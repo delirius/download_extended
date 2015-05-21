@@ -1,0 +1,33 @@
+{
+    "name": "delirius/download_extended",
+    "description": "Download extended. Download element with preferences and preview image",
+    "keywords": ["contao", "download", "preview", "preview image", "document", "pdf"],
+    "type": "contao-module",
+    "homepage": "http://www.delirius.ch",
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "delirius",
+            "email": "contao@delirius.ch",
+            "homepage": "http://www.delirius.ch",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "contao/core": ">=3.1,<4",
+        "contao-community-alliance/composer-plugin": "~2.0"
+
+    },
+    "support": {
+        "issues": "https://github.com/delirius/download_extended/issues"
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "": "system/modules/download_extended"
+            }
+        }
+    }
+
+}
