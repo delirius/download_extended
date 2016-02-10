@@ -115,7 +115,7 @@ class ContentDownloadExtended extends ContentElement
         {
             if (!is_file(TL_ROOT . '/' . $preview) || filemtime(TL_ROOT . '/' . $preview) < (time() - 604800)) // Image older than a week
             {
-                if (class_exists('Imagick', false))
+                if (class_exists('Imagick', false) && !extension_loaded('imagick'))
                 {
                     //!@todo Imagick PHP-Funktionen verwenden, falls vorhanden
                 } else
