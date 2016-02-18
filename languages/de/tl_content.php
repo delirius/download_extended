@@ -19,3 +19,4 @@
  */
 $GLOBALS['TL_LANG']['tl_content']['previewImage']	= array('Vorschau-Bild', 'Eigenes Vorschau-Bild');
 $GLOBALS['TL_LANG']['tl_content']['previewSettings']	= array('Voreinstellung', '');
+$GLOBALS['TL_LANG']['tl_content']['description']	= array('Text', '');
