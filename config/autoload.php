@@ -16,6 +16,8 @@ ClassLoader::addClasses(array
 (
 	// Elements
 	'ContentDownloadExtended' => 'system/modules/download_extended/elements/ContentDownloadExtended.php',
+    	'downloadList' => 'system/modules/download_extended/modules/downloadList.php',
+
 ));
 
 
@@ -26,4 +28,6 @@ TemplateLoader::addFiles(array
 (
 	'ce_download_extended'       => 'system/modules/download_extended/templates',
 	'ce_download_extended_debug' => 'system/modules/download_extended/templates',
+	'download_list_default' => 'system/modules/download_extended/templates',
+    
 ));

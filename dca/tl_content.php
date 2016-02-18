@@ -77,4 +77,5 @@ class tl_content_download extends Backend
         return $arrDownloadSettings;
     }
 
+    
 }

@@ -17,9 +17,15 @@
 /**
  * Back end modules
  */
-$GLOBALS['TL_LANG']['MOD']['tl_download_settings'] = array('Download extended', '');
+$GLOBALS['TL_LANG']['MOD']['tl_download_settings'] = array('Download Einstellungen', '');
+$GLOBALS['TL_LANG']['MOD']['downloadData'] = array('Download Liste', '');
 
 
+
+/**
+ * Front end modules
+ */
+$GLOBALS['TL_LANG']['FMD']['download_list'] = array('Download Liste', '');
 
 
 ?>
