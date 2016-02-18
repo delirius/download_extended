@@ -250,6 +250,7 @@ class ContentDownloadExtended extends ContentElement
 
 
         $this->Template->link = $this->linkTitle;
+        $this->Template->description = $this->description;
         $this->Template->title = specialchars($this->titleText ? : $this->linkTitle);
         $this->Template->href = $strHref;
         $this->Template->mime = $objFile->mime;

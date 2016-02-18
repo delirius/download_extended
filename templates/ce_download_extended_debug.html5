@@ -40,6 +40,11 @@
                 ?>
             </a>
         </div>
+        <?php if ($this->description): ?>
+            <div class="download_extended_description">
+                <?php echo nl2br($this->description); ?>
+            </div>
+        <?php endif; ?>
     </div>
     <div class="clear"></div>
 
