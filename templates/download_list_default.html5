@@ -1,0 +1,63 @@
+
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+    <?php if ($this->headline): ?>
+        <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+    <?php endif; ?>
+
+
+    <?php if ($this->arrDownloadData): ?>
+        <?php foreach ($this->arrDownloadData as $key => $arc_row): ?>
+            <?php foreach ($arc_row as $row): ?>
+
+                <?php if (strstr($row['class'], 'first')): ?>
+                    <div class="download_title">
+                        <h3> <?php echo $row['arc_title']; ?> (<?php echo $row['arc_count']; ?>)</h3>
+                        <div> <?php echo nl2br($row['arc_description']); ?></div>
+                    </div>
+                <?php endif; ?>
+
+                <div class="download_extended_item">
+                    <div class="download_extended_image<?php echo $row['floatClass']; ?>"  <?php if ($row['margin']): ?> style="<?php echo $row['margin']; ?>"<?php endif; ?>>
+                        <a href="<?php echo $row['href']; ?>" title="<?php echo $row['linkTitle']; ?>" <?php echo LINK_NEW_WINDOW; ?> >
+                            <?php if ($row['preview']): ?>
+                                <img src="<?php echo $row['preview']; ?>"<?php echo $row['previewImgSize']; ?> alt="<?php echo $row['linkTitle']; ?>" title="<?php echo $row['linkTitle']; ?>" class="preview_image">
+                            <?php endif; ?>
+                        </a>
+                    </div>
+                    <div class="download_extended_text">
+                        <a href="<?php echo $row['href']; ?>" title="<?php echo  $row['linkTitle']; ?>" <?php echo LINK_NEW_WINDOW; ?>>
+                            <?php if ($row['icon']): ?>
+                                <img src="<?php echo $row['icon']; ?>" width="18" height="18" alt="<?php echo  $row['linkTitle']; ?>" class="mime_icon">
+                            <?php endif; ?>
+                            <?php echo $row['linkTitle']; ?> <?php echo ($row['arrMetainfo']) ? '<span class="size">(' . implode('/', $row['arrMetainfo']) . ')</span>' : ''; ?>
+                        </a>
+                    </div>
+                    <?php if ($this->description): ?>
+                        <div class="download_extended_description">
+                            <?php echo nl2br($this->description); ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="download_item <?php echo $row['class']; ?>">
+                    <?php if ($row['url_01'] != ''): ?>
+                        <a href="<?php echo $row['url_01']; ?>"<?php echo LINK_NEW_WINDOW; ?>>
+                        <?php endif; ?>
+                        <div class="download_title"><?php echo $row['title_01']; ?></div>
+                        <div class="download_category"><?php echo $row['category_01']; ?></div>
+                        <img src="<?php echo $this->getImage($row['image_01'][0], '160', '100', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
+                        <div class="download_description"><?php echo nl2br($row['description_01']); ?></div>
+                        <?php if ($row['url_01'] != ''): ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <?php if ($this->pagination): ?>
+        <?php echo $this->pagination; ?>
+    <?php endif; ?>
+</div>

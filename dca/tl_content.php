@@ -15,7 +15,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['download_extended'] = '{type_legend},type,headline;{source_legend},singleSRC;{dwnconfig_legend},linkTitle,titleText,description;{image_legend},previewImage,previewSettings;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['download_extended'] = '{type_legend},type,headline;{download_extended_source_legend},singleSRC;{download_extended_text_legend},linkTitle,titleText,description;{download_extended_image_legend},previewImage,previewSettings;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 
 /**
  * Fields
@@ -25,9 +25,12 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['previewImage'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_content']['previewImage'],
     'exclude' => true,
     'inputType' => 'fileTree',
-    'eval' => array('fieldType' => 'radio', 'files' => true, 'filesOnly' => true, 'extensions' => 'jpg,jpeg,gif,png', 'tl_class' => 'clr'),
+    'eval' => array('fieldType' => 'radio', 'files' => true, 'filesOnly' => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'tl_class' => 'clr'),
     'sql' => "binary(16) NULL",
 );
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['singleSRC']['eval']['extensions'] = $GLOBALS['TL_CONFIG']['allowedDownload'];
+
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['previewSettings'] = array
     (
@@ -77,4 +80,5 @@ class tl_content_download extends Backend
         return $arrDownloadSettings;
     }
 
+    
 }

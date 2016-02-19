@@ -101,7 +101,7 @@ class ContentDownloadExtended extends ContentElement
         }
 
 
-        $preview = 'system/tmp/' . $this->id . '-' . substr(md5($this->singleSRC), 0, 8) . '.jpg';
+        $preview = 'system/tmp/' . $this->id . '-' . substr(md5($objFile->path), 0, 8) . '.jpg';
 
         if ($this->previewImage)         // Preview image is given
         {
@@ -122,7 +122,7 @@ class ContentDownloadExtended extends ContentElement
                 {
 
                     $strFirst = ($objFile->extension == 'pdf' ? '[0]' : '' );
-                    @exec(sprintf('PATH=\$PATH:%s;export PATH;%s/convert %s/%s' . $strFirst . ' %s/%s 2>&1', $objParams->pathImageMagick, $objParams->pathImageMagick, TL_ROOT, escapeshellarg($this->singleSRC), TL_ROOT, $preview), $convert_output, $convert_code);
+                    @exec(sprintf('PATH=\$PATH:%s;export PATH;%s/convert %s/%s' . $strFirst . ' %s/%s 2>&1', $objParams->pathImageMagick, $objParams->pathImageMagick, TL_ROOT, escapeshellarg($objFile->path), TL_ROOT, $preview), $convert_output, $convert_code);
 
                     if (!is_file(TL_ROOT . '/' . $preview))
                     {
@@ -136,7 +136,7 @@ class ContentDownloadExtended extends ContentElement
                         {
                             $reason = 'Unable to read PDF due to GhostScript error.';
                         }
-                        $this->log('Creating preview from "' . $this->singleSRC . '" failed! ' . $reason . "\n\n" . $convert_output, 'ContentPreviewDownload compile()', TL_ERROR);
+                        $this->log('Creating preview from "' . $objFile->path . '" failed! ' . $reason . "\n\n" . $convert_output, 'ContentPreviewDownload compile()', TL_ERROR);
                         if (TL_MODE == 'BE')
                         {
                             $this->linkTitle .= $GLOBALS['TL_LANG']['MSC']['creatingPreviewFailed'];
@@ -219,15 +219,14 @@ class ContentDownloadExtended extends ContentElement
 
 
         $strHref = \Environment::get('request');
-
         // Remove an existing file parameter (see #5683)
         if (preg_match('/(&(amp;)?|\?)file=/', $strHref))
         {
             $strHref = preg_replace('/(&(amp;)?|\?)file=[^&]+/', '', $strHref);
         }
-
         $strHref .= (($GLOBALS['TL_CONFIG']['disableAlias'] || strpos($strHref, '?') !== false) ? '&amp;' : '?') . 'file=' . \System::urlEncode($objFile->value);
 
+        
         $this->Template->margin = $this->generateMargin(deserialize($objParams->previewImageMargin), 'margin');
 
         // Float image
@@ -240,6 +239,7 @@ class ContentDownloadExtended extends ContentElement
         {
             $this->Template->icon = TL_ASSETS_URL . 'assets/contao/images/' . $objFile->icon;
         }
+        /*
         if ($objParams->previewFilesizeD)
         {
             $this->Template->filesize = $arrMetainfo['filesize_dec'];
@@ -247,7 +247,7 @@ class ContentDownloadExtended extends ContentElement
         {
             $this->Template->filesize = $arrMetainfo['filesize_bin'];
         }
-
+*/
 
         $this->Template->link = $this->linkTitle;
         $this->Template->description = $this->description;
