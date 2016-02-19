@@ -15,35 +15,32 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_download_data']['published'] = array('Veröffentlicht', '');
-$GLOBALS['TL_LANG']['tl_download_data']['title_01'] = array('Titel', '');
-$GLOBALS['TL_LANG']['tl_download_data']['title_02'] = array('Titel 2', '');
-$GLOBALS['TL_LANG']['tl_download_data']['url_01'] = array('Link', '');
-$GLOBALS['TL_LANG']['tl_download_data']['url_02'] = array('Link 2', '');
-$GLOBALS['TL_LANG']['tl_download_data']['description_01'] = array('Beschreibung', '');
-$GLOBALS['TL_LANG']['tl_download_data']['description_02'] = array('Beschreibung 2', '');
-$GLOBALS['TL_LANG']['tl_download_data']['image_01'] = array('Bilder', '');
-$GLOBALS['TL_LANG']['tl_download_data']['image_02'] = array('Bilder 2', '');
-$GLOBALS['TL_LANG']['tl_download_data']['category_01'] = array('Kategorie 1 (download)', '');
-$GLOBALS['TL_LANG']['tl_download_data']['category_02'] = array('Kategorie 2 (download)', '');
-$GLOBALS['TL_LANG']['tl_download_data']['jumpTo_01'] = array('Kategorie (Seiten Filter)', '');
-$GLOBALS['TL_LANG']['tl_download_data']['alias'] = array('Alias', 'Alias wird automatisch generiert wenn es leer ist.');
+$GLOBALS['TL_LANG']['tl_download_data']['previewSettings']	= array('Voreinstellung', '');
+$GLOBALS['TL_LANG']['tl_download_data']['title'] = array('Titel', 'Aussagekräftiger Titel für diese Voreinstellung eingeben. Dieser erscheint als Auswahl im Inhaltselement Download extended.');
+$GLOBALS['TL_LANG']['tl_download_data']['published'] = array('Publiziert', '');
+$GLOBALS['TL_LANG']['tl_download_data']['linkSource'] = array('Quelldatei', 'Bitte wählen Sie eine Datei aus der Dateiübersicht.');
+$GLOBALS['TL_LANG']['tl_download_data']['linkTitle'] = array('Link-Titel', 'Der Link-Titel wird als title-Attribut im HTML-Markup eingefügt.');
+$GLOBALS['TL_LANG']['tl_download_data']['titleText'] = array('Link-Text', 'Der Link-Text wird anstelle der Link-Adresse angezeigt.');
+$GLOBALS['TL_LANG']['tl_download_data']['description'] = array('Text', 'Optionales Textfeld als Beschreibung');
+$GLOBALS['TL_LANG']['tl_download_data']['previewImage'] = array('Vorschau-Bild', 'Eigenes Vorschau-Bild');
+$GLOBALS['TL_LANG']['tl_download_data']['previewSettings'] = array('Voreinstellung', '');
 
 
 /**
- * Legends
+ * Reference
  */
-$GLOBALS['TL_LANG']['tl_download_data']['text_legend'] = 'Text';
-$GLOBALS['TL_LANG']['tl_download_data']['image_legend'] = 'Bild';
-$GLOBALS['TL_LANG']['tl_download_data']['category_legend'] = 'Kategorie';
+$GLOBALS['TL_LANG']['tl_download_data']['download_extended_legend'] = 'Download extended';
+$GLOBALS['TL_LANG']['tl_download_data']['download_extended_image_legend'] = 'Bildeinstellungen';
+$GLOBALS['TL_LANG']['tl_download_data']['download_extended_source_legend'] = 'Quelle';
+$GLOBALS['TL_LANG']['tl_download_data']['download_extended_text_legend'] = 'Texteinstellungen';
 
 
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_download_data']['new']    = array('New ', 'Create a new ');
-$GLOBALS['TL_LANG']['tl_download_data']['show']   = array(' details', 'Show the details of  ID %s');
-$GLOBALS['TL_LANG']['tl_download_data']['edit']   = array('Edit ', 'Edit  ID %s');
-$GLOBALS['TL_LANG']['tl_download_data']['cut']    = array('Move ', 'Move  ID %s');
-$GLOBALS['TL_LANG']['tl_download_data']['copy']   = array('Duplicate ', 'Duplicate  ID %s');
-$GLOBALS['TL_LANG']['tl_download_data']['delete'] = array('Delete ', 'Delete  ID %s');
+$GLOBALS['TL_LANG']['tl_download_data']['new']    = array('Neuer Download ', '');
+$GLOBALS['TL_LANG']['tl_download_data']['show']   = array('Details', 'Zeigt die etails von ID %s');
+$GLOBALS['TL_LANG']['tl_download_data']['edit']   = array('Editieren ', 'Editiere ID %s');
+$GLOBALS['TL_LANG']['tl_download_data']['cut']    = array('Verschieben ', 'Verschiebe ID %s');
+$GLOBALS['TL_LANG']['tl_download_data']['copy']   = array('Duplizieren ', 'Dupliziere ID %s');
+$GLOBALS['TL_LANG']['tl_download_data']['delete'] = array('Löschen ', 'Lösche ID %s');

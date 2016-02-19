@@ -86,7 +86,7 @@ $GLOBALS['TL_DCA']['tl_download_data'] = array
     // Palettes
     'palettes' => array
         (
-        'default' => '{download_extended_legend},title,previewTemplate;{download_extended_image_legend},headline,previewStandardImage,previewImageSize,previewImageMargin,previewConsiderOrientation,previewImageFloating;{download_extended_imageg_legend},previewGenerateImage,pathImageMagick;{download_extended_text_legend},previewIcon,previewExtension,previewFilesizeD,previewFilesizeB;',
+        'default' => '{text_legend},published,title;{download_extended_source_legend},linkSource;{download_extended_text_legend},linkTitle,titleText,description;{download_extended_image_legend},previewImage,previewSettings;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop',
     ),
     // Fields
     'fields' => array
@@ -99,13 +99,27 @@ $GLOBALS['TL_DCA']['tl_download_data'] = array
             (
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
+        'sorting' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['sorting'],
+            'inputType' => 'text',
+            'eval' => array('tl_class' => 'w50'),
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
         'tstamp' => array
             (
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
+        'published' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['published'],
+            'inputType' => 'checkbox',
+            'eval' => array('tl_class' => 'long'),
+            'sql' => "char(1) NOT NULL default ''"
+        ),
         'title' => array
             (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['title'],
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['title'],
             'exclude' => true,
             'search' => true,
             'sorting' => true,
@@ -113,111 +127,58 @@ $GLOBALS['TL_DCA']['tl_download_data'] = array
             'eval' => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => ''),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
-        'previewImageSize' => array
+        'linkSource' => array
             (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewImageSize'],
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['linkSource'],
             'exclude' => true,
-            'inputType' => 'imageSize',
-            'options' => $GLOBALS['TL_CROP'],
-            'reference' => &$GLOBALS['TL_LANG']['MSC'],
-            'eval' => array('rgxp' => 'digit', 'nospace' => true, 'helpwizard' => true, 'tl_class' => 'clr w50'),
-            'sql' => "varchar(64) NOT NULL default ''"
+            'inputType' => 'fileTree',
+            'eval' => array('fieldType' => 'radio', 'files' => true, 'filesOnly' => true, 'extensions' => $GLOBALS['TL_CONFIG']['allowedDownload'],'mandatory' => true),
+            'sql' => "binary(16) NULL"
         ),
-        'previewImageMargin' => array
+        'linkTitle' => array
             (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewImageMargin'],
-            'exclude' => true,
-            'inputType' => 'trbl',
-            'options' => $GLOBALS['TL_CSS_UNITS'],
-            'eval' => array('includeBlankOption' => true, 'tl_class' => 'w50'),
-            'sql' => "varchar(128) NOT NULL default ''"
-        ),
-        'previewGenerateImage' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewGenerateImage'],
-            'exclude' => true,
-            'inputType' => 'checkbox',
-            'eval' => array('tl_class' => ' m12'),
-            'sql' => "char(1) NOT NULL default ''"
-        ),
-        'pathImageMagick' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['pathImageMagick'],
-            'default' => '/usr/bin',
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['linkTitle'],
             'exclude' => true,
             'search' => true,
             'sorting' => true,
             'inputType' => 'text',
-            'eval' => array('mandatory' => false, 'maxlength' => 255, 'tl_class' => 'clr'),
+            'eval' => array('mandatory' => false, 'maxlength' => 255, 'tl_class' => 'w50'),
             'sql' => "varchar(255) NOT NULL default ''"
         ),
-        'previewStandardImage' => array
+        'titleText' => array
             (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewStandardImage'],
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['titleText'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'inputType' => 'text',
+            'eval' => array('mandatory' => false, 'maxlength' => 255, 'tl_class' => 'w50'),
+            'sql' => "varchar(255) NOT NULL default ''"
+        ),
+        'previewImage' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['previewImage'],
             'exclude' => true,
             'inputType' => 'fileTree',
-            'eval' => array('fieldType' => 'radio', 'files' => true, 'filesOnly' => true, 'extensions' => 'jpg,jpeg,gif,png', 'tl_class' => 'clr'),
+            'eval' => array('fieldType' => 'radio', 'files' => true, 'filesOnly' => true, 'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes'], 'tl_class' => 'clr'),
             'sql' => "binary(16) NULL",
         ),
-        'previewConsiderOrientation' => array
+        'previewSettings' => array
             (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewConsiderOrientation'],
-            'exclude' => true,
-            'inputType' => 'checkbox',
-            'eval' => array('tl_class' => 'w50 m12'),
-            'sql' => "char(1) NOT NULL default ''"
-        ),
-        'previewIcon' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewIcon'],
-            'exclude' => true,
-            'inputType' => 'checkbox',
-            'eval' => array('tl_class' => ' m12'),
-            'sql' => "char(1) NOT NULL default ''"
-        ),
-        'previewExtension' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewExtension'],
-            'exclude' => true,
-            'inputType' => 'checkbox',
-            'eval' => array('tl_class' => ' m12'),
-            'sql' => "char(1) NOT NULL default ''"
-        ),
-        'previewFilesizeD' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewFilesizeD'],
-            'exclude' => true,
-            'inputType' => 'checkbox',
-            'eval' => array('tl_class' => ' m12'),
-            'sql' => "char(1) NOT NULL default ''"
-        ),
-        'previewFilesizeB' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewFilesizeB'],
-            'exclude' => true,
-            'inputType' => 'checkbox',
-            'eval' => array('tl_class' => ' m12'),
-            'sql' => "char(1) NOT NULL default ''"
-        ),
-        'previewImageFloating' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewImageFloating'],
-            'default' => 'above',
-            'exclude' => true,
-            'inputType' => 'radioTable',
-            'options' => array('above', 'left', 'right', 'below'),
-            'eval' => array('cols' => 4, 'tl_class' => 'w50'),
-            'sql' => "varchar(32) NOT NULL default ''"
-        ),
-        'previewTemplate' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_download_settings']['previewTemplate'],
-            'default' => 'ce_download_extended',
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['previewSettings'],
             'exclude' => true,
             'inputType' => 'select',
-            'options_callback' => array('tl_download_data_ext', 'getTemplates'),
-            'eval' => array('includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'w50'),
-            'sql' => "varchar(64) NOT NULL default ''"
+            'options_callback' => array('tl_download_data_ext', 'getDownloadSettings'),
+            'eval' => array('chosen' => true, 'mandatory' => true),
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
+        'description' => array
+            (
+            'label' => &$GLOBALS['TL_LANG']['tl_download_data']['description'],
+            'exclude' => true,
+            'inputType' => 'textarea',
+            'eval' => array('style' => 'height:48px', 'tl_class' => 'clr', 'rte' => 'tinyMCE'),
+            'sql' => "text NULL"
         ),
     )
 );
@@ -248,9 +209,9 @@ class tl_download_data_ext extends Backend
             }
         }
 
-        if ($row['title_01'])
+        if ($row['title'])
         {
-            $text = '<span class="name">' . $row['title_01'] . '</span>';
+            $text = '<span class="name">' . $row['title'] . '</span>';
         }
         return $image . $text;
 
@@ -338,8 +299,24 @@ class tl_download_data_ext extends Backend
         return ' <a href="contao/page.php?do=' . Input::get('do') . '&amp;table=' . $dc->table . '&amp;field=' . $dc->field . '&amp;value=' . str_replace(array('{{link_url::', '}}'), '', $dc->value) . '" title="' . specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) . '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':765,\'title\':\'' . specialchars(str_replace("'", "\\'", $GLOBALS['TL_LANG']['MOD']['page'][0])) . '\',\'url\':this.href,\'id\':\'' . $dc->field . '\',\'tag\':\'ctrl_' . $dc->field . ((Input::get('act') == 'editAll') ? '_' . $dc->id : '') . '\',\'self\':this});return false">' . Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
     }
 
-    
-     /**
+    public function getDownloadSettings()
+    {
+        $arrDownloadSettings = array();
+
+        $objData = Database::getInstance()->prepare("SELECT id,title FROM tl_download_settings WHERE 1 ORDER BY title")
+                ->execute();
+
+        if ($objData->numRows)
+        {
+            while ($objData->next())
+            {
+                $arrDownloadSettings[$objData->id] = $objData->title;
+            } // while
+        }
+        return $arrDownloadSettings;
+    }
+
+    /**
      * Return all event templates as array
      * @param object
      * @return array
@@ -348,7 +325,5 @@ class tl_download_data_ext extends Backend
     {
         return Controller::getTemplateGroup('ce_download_');
     }
-
-    
 
 }

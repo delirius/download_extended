@@ -3,8 +3,7 @@
 /**
  * Add palettes to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['download_list'] = '{title_legend},name,type;{download_legend},download_list_archive,download_template,download_per_page,download_filter_page;';
-
+$GLOBALS['TL_DCA']['tl_module']['palettes']['download_list'] = '{title_legend},name,type;{download_legend},download_list_archive,download_template,download_per_page;';
 
 
 /**
@@ -27,14 +26,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['download_per_page'] = array
     'inputType' => 'text',
     'eval' => array('mandatory' => false, 'maxlength' => 12, 'tl_class' => 'w50'),
     'sql' => "int(10) unsigned NOT NULL default '0'"
-);
-
-$GLOBALS['TL_DCA']['tl_module']['fields']['download_filter_page'] = array
-    (
-    'label' => &$GLOBALS['TL_LANG']['tl_module']['download_filter_page'],
-    'inputType' => 'checkbox',
-    'eval' => array('tl_class' => 'w50 m12'),
-    'sql' => "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['download_template'] = array

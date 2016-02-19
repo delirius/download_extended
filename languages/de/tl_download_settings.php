@@ -20,6 +20,7 @@
 $GLOBALS['TL_LANG']['tl_download_settings']['title'] = array('Titel', 'Aussagekräftiger Titel für diese Voreinstellung eingeben. Dieser erscheint als Auswahl im Inhaltselement Download extended.');
 $GLOBALS['TL_LANG']['tl_download_settings']['published'] = array('Publiziert', '');
 $GLOBALS['TL_LANG']['tl_download_settings']['previewImageSize'] = array('Vorschau Bildgrösse', '');
+$GLOBALS['TL_LANG']['tl_download_settings']['previewTemplate'] = array('Template', '');
 $GLOBALS['TL_LANG']['tl_download_settings']['previewGenerateImage'] = array('Vorschaubild automatisch generieren', '');
 $GLOBALS['TL_LANG']['tl_download_settings']['pathImageMagick'] = array('Pfad zu ImageMagick', 'Pfad zu ImageMagick (/usr/bin)');
 $GLOBALS['TL_LANG']['tl_download_settings']['previewImageMargin'] = array('Bildabstand', '');
