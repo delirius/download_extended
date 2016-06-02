@@ -32,27 +32,13 @@
                             <?php echo $row['linkTitle']; ?> <?php echo ($row['arrMetainfo']) ? '<span class="size">(' . implode('/', $row['arrMetainfo']) . ')</span>' : ''; ?>
                         </a>
                     </div>
-                    <?php if ($this->description): ?>
+                    <?php if ($row['description']): ?>
                         <div class="download_extended_description">
-                            <?php echo nl2br($this->description); ?>
+                            <?php echo nl2br($row['description']); ?>
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="clear"></div>
-
-
-                <div class="download_item <?php echo $row['class']; ?>">
-                    <?php if ($row['url_01'] != ''): ?>
-                        <a href="<?php echo $row['url_01']; ?>"<?php echo LINK_NEW_WINDOW; ?>>
-                        <?php endif; ?>
-                        <div class="download_title"><?php echo $row['title_01']; ?></div>
-                        <div class="download_category"><?php echo $row['category_01']; ?></div>
-                        <img src="<?php echo $this->getImage($row['image_01'][0], '160', '100', 'proportional') ?>" alt="<?php echo $row['title_01']; ?>">
-                        <div class="download_description"><?php echo nl2br($row['description_01']); ?></div>
-                        <?php if ($row['url_01'] != ''): ?>
-                        </a>
-                    <?php endif; ?>
-                </div>
+              
 
             <?php endforeach; ?>
         <?php endforeach; ?>
