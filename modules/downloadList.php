@@ -172,9 +172,24 @@ class downloadList extends \Module
                 $objData->linkTitle = $objFile->basename;
             }
 
+            if (!$objFile->filename)
+            {
+                return;
+            }
 
-            $preview = 'system/tmp/' . $objFile->id . '-' . substr(md5($objFile->path), 0, 8) . '.jpg';
+            $d_path = 'assets/download_extended/';
 
+            if (!is_dir(TL_ROOT . '/' . $d_path))
+            {
+                mkdir(TL_ROOT . '/' . $d_path);
+                if (!is_dir(TL_ROOT . '/' . $d_path))
+                {
+                    return false;
+                }
+            }
+
+            $preview = $d_path . $objFile->filename . '-' . substr(md5($objFile->path), 0, 8) . '.jpg';
+            
             if ($objData->previewImage)         // Preview image is given
             {
                 $objImage = \FilesModel::findByUuid($objData->previewImage);
