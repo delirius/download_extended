@@ -177,7 +177,7 @@ class downloadList extends \Module
                 return;
             }
 
-            $d_path = 'assets/download_extended/';
+            $d_path = 'assets/images/download_extended/';
 
             if (!is_dir(TL_ROOT . '/' . $d_path))
             {
