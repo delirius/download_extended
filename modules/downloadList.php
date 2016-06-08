@@ -200,8 +200,8 @@ class downloadList extends \Module
                 }
             } elseif ($arrSetting[$objData->previewSettings]['previewGenerateImage'])         // Standard image
             {
-                if (!is_file(TL_ROOT . '/' . $preview) || filemtime(TL_ROOT . '/' . $preview) < (time() - 604800)) // Image older than a week
-                {
+                $cachetime = rand(7, 14) * 86400;
+                if (!is_file(TL_ROOT . '/' . $preview) || filemtime(TL_ROOT . '/' . $preview) < (time() - $cachetime)) // Image older                 {
                     if (class_exists('Imagick', false) && !extension_loaded('imagick'))
                     {
                         //!@todo Imagick PHP-Funktionen verwenden, falls vorhanden
