@@ -194,25 +194,40 @@ class tl_download_data_ext extends Backend
      * @param array
      * @return string
      */
-    public function getRowLabel($row)
-    {
+       public function getRowLabel($row) {
 
-        if ($row['orderSRC_01'])
-        {
-            $arrBilder = deserialize($row['orderSRC_01']);
-            $objFile = \FilesModel::findById($arrBilder[0]);
 
-            if ($objFile !== null)
-            {
-                $preview = $objFile->path;
-                $image = '<img src="' . $this->getImage($preview, 65, 45, 'center_center') . '" alt="' . htmlspecialchars($label) . '" style="display: inline-block;vertical-align: top;*display:inline;zoom:1;padding-right:8px;" />';
+        if ($row['linkSource']) {
+
+            $objFileFind = \FilesModel::findById($row['linkSource']);
+            $objFile = new \File($objFileFind->path, true);
+
+
+
+            if ($row['previewImage'] != '') {
+                $objFileFind = \FilesModel::findById($row['previewImage']);
+                $preview = '' . $objFileFind->path;
+            } else {
+                $preview = 'assets/images/download_extended/' . $objFile->filename . '-' . substr(md5($objFile->path), 0, 8) . '.jpg';
+            }
+
+            $image = '<img src="' . $this->getImage($preview, 110, 110, 'proportional') . '" alt="' . htmlspecialchars($label) . '" style="display: inline-block;vertical-align: top;*display:inline;zoom:1;margin-right:8px;border:1px solid #ccc;" />';
+        }
+
+        $text = '<div class="name" style="display: inline-block;vertical-align: top;">';
+
+        if ($row['title']) {
+            $text .= '<strong>' . $row['title'] . '</strong>';
+        }
+        if ($objFile->path) {
+            $text .= '<br>' . $objFile->path;
+            $path = preg_replace('/[^a-zA-Z0-9_\/.]/', '', $objFile->path);
+            if ($path !== $objFile->path) {
+                $text .= '<br><span style="color:#cc0000">File name is not web compatible</span>';
             }
         }
+        $text .= '</div>';
 
-        if ($row['title'])
-        {
-            $text = '<span class="name">' . $row['title'] . '</span>';
-        }
         return $image . $text;
 
 
