@@ -179,16 +179,16 @@ class downloadList extends \Module
 
             $d_path = 'assets/images/download_extended/';
 
-            if (!is_dir(TL_ROOT . '/' . $d_path))
-            {
+           $d_path = 'assets/images/download_extended/';
+            if (!is_dir(TL_ROOT . '/' . $d_path)) {
                 mkdir(TL_ROOT . '/' . $d_path);
-                if (!is_dir(TL_ROOT . '/' . $d_path))
-                {
+                if (!is_dir(TL_ROOT . '/' . $d_path)) {
                     return false;
                 }
             }
 
-            $preview = $d_path . $objFile->filename . '-' . substr(md5($objFile->path), 0, 8) . '.jpg';
+            $preview = $d_path . substr(preg_replace('/[^a-zA-Z0-9]/', '', $objFile->filename), 0, 8) . '-' . substr(md5($objFile->path), 0, 8) . '.jpg';
+
             
             if ($objData->previewImage)         // Preview image is given
             {
