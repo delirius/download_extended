@@ -197,24 +197,32 @@ class tl_download_data_ext extends Backend
     public function getRowLabel($row)
     {
 
-        if ($row['orderSRC_01'])
-        {
-            $arrBilder = deserialize($row['orderSRC_01']);
-            $objFile = \FilesModel::findById($arrBilder[0]);
+        if ($row['linkSource']) {
 
-            if ($objFile !== null)
-            {
-                $preview = $objFile->path;
-                $image = '<img src="' . $this->getImage($preview, 65, 45, 'center_center') . '" alt="' . htmlspecialchars($label) . '" style="display: inline-block;vertical-align: top;*display:inline;zoom:1;padding-right:8px;" />';
+            $objFileFind = \FilesModel::findById($row['linkSource']);
+            $objFile     = new \File($objFileFind->path, true);
+
+            if ($row['previewImage'] != '') {
+                $objFileFind = \FilesModel::findById($row['previewImage']);
+                $preview     = '' . $objFileFind->path;
+            } else {
+                $d_path  = 'assets/images/download_extended/';
+                $preview = $d_path . substr(preg_replace('/[^a-zA-Z0-9]/', '', $objFile->filename), 0, 8) . '-' . substr(md5($objFile->path), 0, 8) . '.jpg';
+
             }
+
+            $image = '<img src="' . $this->getImage($preview, 110, 120, 'proportional') . '" alt="' . htmlspecialchars($label) . '" style="display: inline-block;vertical-align: top;*display:inline;zoom:1;margin-right:8px;border:1px solid #ccc;" />';
         }
 
-        if ($row['title'])
-        {
-            $text = '<span class="name">' . $row['title'] . '</span>';
+        $text = '<div class="name" style="display: inline-block;vertical-align: top;">';
+
+        if ($row['title']) {
+            $text .= '<strong>' . $row['title'] . '</strong>';
         }
+    
+        $text .= '</div>';
+
         return $image . $text;
-
 
         // $out = $this->replaceInsertTags('{{image::/' . $row['vorschaubild'] . '?width=55&height=65}}');
     }
